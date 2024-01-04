@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  client:
+    build:
+      context: ./client
+      target: PRODUCTION_IMAGE
+    ports:
+      - '8080:8080'
+    depends_on:
+      - server
+    networks:
+      - app-network
+
+  server:
+    build:
+      context: ./server
+    ports:
+      - '4000:4000'
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/auth-todo
+    networks:
+      - app-network
+
+  mongodb:
+    image: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - data-volume:/data/db
+    networks:
+      - app-network
+
+volumes:
+  data-volume:
+
+networks:
+  app-network:
+    driver: bridge
