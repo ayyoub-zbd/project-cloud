@@ -20,7 +20,7 @@ services:
     depends_on:
       - mongodb
     environment:
-      - MONGO_URI=mongodb://mongodb:27017/auth-todo
+      - MONGO_URI=mongodb://localhost:27017/auth-todo
     networks:
       - app-network
 
