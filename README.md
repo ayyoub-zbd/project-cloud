@@ -3,7 +3,14 @@
 ### Auteurs
 Karam MANSOUR, Sofian YAHYAOUI, Ayyoub ZEBDA
 
+## Lancer les containers Docker :
+À la racine du projet (soyez sûrs d'avoir MongoDB et Docker d'installés et d'executés) :
+```
+docker-compose up
+```
+
 ## Lancer le projet en local :
+Soyez sûrs d'avoir MongoDB et Docker d'installés et d'executés.
 ### Backend
 À la racine du projet :
 ```
@@ -16,11 +23,5 @@ node server.js
 ```
 cd ./client
 npm install
-npm start
-```
- 
-## Lancer les containers Docker :
-À la racine du projet (soyez sûrs d'avoir MongoDB et Docker d'installés et d'executés) :
-```
-docker-compose up
+npm run preview
 ```
