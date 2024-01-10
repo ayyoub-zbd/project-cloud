@@ -34,6 +34,7 @@ spec:
     - protocol: TCP
       targetPort: 8080
       port: 80
+  type: LoadBalancer
 
 ---
 # Backend deployment
@@ -75,7 +76,6 @@ spec:
     - protocol: TCP
       port: 4000
       targetPort: 4000
-  type: LoadBalancer
 
 ---
 # MongoDB deployment
