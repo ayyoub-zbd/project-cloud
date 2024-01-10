@@ -12,7 +12,7 @@ const secret = 'supersecret'
 
 mongoose.set('strictQuery', false)
 
-await mongoose.connect('mongodb://127.0.0.1:27017/auth-todo');
+await mongoose.connect('mongodb://mongodb:27017/auth-todo');
 const db = mongoose.connection;
 db.on('error', console.log);
 
@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(bodyParser.json({ extended: true }));
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:8080'
+    origin: 'http://todo-app.local:8080'
 }));
 
 // ~~~~ Connection Test

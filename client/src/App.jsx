@@ -13,14 +13,14 @@ function App() {
   const [email, setEmail] = React.useState('');
 
   React.useEffect(() => {
-    axios.get('http://localhost:4000/user', {withCredentials: true})
+    axios.get('http://todo-app.local/backend/user', {withCredentials: true})
       .then(response => {
         setEmail(response.data.email);
       });
   }, []);
 
   function logout() {
-    axios.post('http://localhost:4000/logout', {}, {withCredentials: true})
+    axios.post('http://todo-app.local/backend/logout', {}, {withCredentials: true})
       .then(() => setEmail(''));
   }
 

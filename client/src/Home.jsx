@@ -8,7 +8,7 @@ export default function Home() {
     const [todos, setTodos] = React.useState([]);
 
     React.useEffect(() => {
-        axios.get('http://localhost:4000/todos', {withCredentials: true})
+        axios.get('http://todo-app.local/backend/todos', {withCredentials: true})
             .then(response => {
                 setTodos(response.data);
             });
@@ -25,7 +25,7 @@ export default function Home() {
     function addTodo(e) {
         e.preventDefault();
 
-        axios.put('http://localhost:4000/todos', {text: inputVal}, {withCredentials: true})
+        axios.put('http://todo-app.local/backend/todos', {text: inputVal}, {withCredentials: true})
             .then(response => {
                 setTodos([...todos, response.data]);
                 setInputVal('');
@@ -35,7 +35,7 @@ export default function Home() {
 
     function updateTodo(todo) {
         const data = { id: todo._id, done: !todo.done };
-        axios.post('http://localhost:4000/todos', data, {withCredentials: true})
+        axios.post('http://todo-app.local/backend/todos', data, {withCredentials: true})
             .then(() => {
                 const newTodos = todos.map(t => {
                     if (t._id === todo._id) {

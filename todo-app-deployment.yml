@@ -31,10 +31,9 @@ spec:
   selector:
     app: todo-app-client
   ports:
-    - protocol: "TCP"
+    - protocol: TCP
       targetPort: 8080
       port: 80
-  type: LoadBalancer
 
 ---
 # Backend deployment
@@ -59,7 +58,7 @@ spec:
           ports:
             - containerPort: 4000
           env:
-            - name: MONGO_URI
+            - name: MONGO_URL
               value: "mongodb://mongodb:27017/auth-todo"
 
 ---
@@ -73,9 +72,10 @@ spec:
   selector:
     app: todo-app-server
   ports:
-    - protocol: "TCP"
-      targetPort: 4000
+    - protocol: TCP
       port: 4000
+      targetPort: 4000
+  type: LoadBalancer
 
 ---
 # MongoDB deployment
@@ -83,7 +83,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongodb-deployment
+  name: mongodb
 spec:
   replicas: 1
   selector:
@@ -95,21 +95,22 @@ spec:
         app: mongodb
     spec:
       containers:
-        - name: mongodb
-          image: mongo:latest
-          ports:
-            - containerPort: 27017
+      - name: mongodb
+        image: mongo:latest
+        ports:
+        - containerPort: 27017
 
 ---
 # MongoDB service
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongodb-service
+  name: mongodb
 spec:
   selector:
     app: mongodb
   ports:
-    - protocol: "TCP"
-      targetPort: 27017
+    - protocol: TCP
       port: 27017
+      targetPort: 27017

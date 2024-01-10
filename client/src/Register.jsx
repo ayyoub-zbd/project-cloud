@@ -15,7 +15,7 @@ export default function Register() {
         e.preventDefault();
 
         const data = {email, password};
-        axios.post('http://localhost:4000/register', data, {withCredentials: true})
+        axios.post('http://todo-app.local/backend/register', data, {withCredentials: true})
             .then(response => {
                 user.setEmail(response.data.email);
                 setEmail('');
